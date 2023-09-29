@@ -3,6 +3,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+#app {
+    background: linear-gradient(145deg, #577a81, #689099);
+    min-height: 100vh;
+    color: white;
+}
 /* Your custom CSS goes here */
 .rb {
     border: 1px solid red;

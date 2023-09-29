@@ -1,64 +1,129 @@
 <template>
-    <div class="w-screen justify-center flex flex-col align-center">
-      <h2 class="text-xl font-semibold mb-4">Add Item to Shopping List</h2>
-      <form @submit.prevent="addItem">
-        <div class="mb-4">
-          <label for="itemName" class="block text-gray-700 font-semibold mb-2">Item Name:</label>
-          <input
+  <div class=" justify-center flex flex-col content-center">
+    
+    <form class="flex  pt-4 pb-4 content-center justify-center gap-x-10 " @submit.prevent="addItem">
+      <div class="mb-4">
+        <!-- <label for="itemName" class="block text-gray-700 font-semibold mb-2">Item Name:</label> -->
+        <input
             v-model="itemName"
             type="text"
             id="itemName"
-            class="w-54 px-3 py-2 border rounded-lg"
+            class="itemInput w-54 px-3 py-2  rounded-lg"
             required
-          />
-        </div>
-        <div class="mb-4">
-          <label for="quantity" class="block text-gray-700 font-semibold mb-2">Quantity:</label>
-          <input
+            placeholder="Enter item name"
+        />
+      </div>
+      <div class="mb-4">
+        <!-- <label for="quantity" class="block text-gray-700 font-semibold mb-2">Quantity:</label> -->
+        <input
             v-model="quantity"
             type="number"
             id="quantity"
-            class="w-54 px-3 py-2 border rounded-lg"
+            class="itemInput w-14 px-3 py-2 rounded-lg"
             required
-          />
-        </div>
+        />
+      </div>
+      <div class="mb-4  self-center  ">
         <button
           type="submit"
-          class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          class="button w-8"
         >
-          Add Item
+          <span>+</span>
         </button>
-      </form>
-    </div>
-  </template>
+      </div>
+      
+    </form>
+  </div>
+</template>
   
-  <script lang="ts">
+<script lang="ts">
 import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    data() {
-      return {
-        itemName: '',
-        quantity: 1,
-      };
+
+export default defineComponent({
+  data() {
+    return {
+      itemName: '',
+      quantity: 1,
+    };
+  },
+  methods: {
+    addItem() {
+      if (this.itemName.trim() === '') {
+        // Prevent adding an empty item
+        return;
+      }
+
+      // Emit an event to notify the parent component to add the item to the list
+      this.$emit('addItem', {
+        name: this.itemName,
+        quantity: this.quantity.toString(),
+      });
+
+      // Reset the form fields
+      this.itemName = '';
+      this.quantity = 1;
     },
-    methods: {
-      addItem() {
-        if (this.itemName.trim() === '') {
-          // Prevent adding an empty item
-          return;
-        }
-  
-        // Emit an event to notify the parent component to add the item to the list
-        this.$emit('addItem', {
-          name: this.itemName,
-          quantity: this.quantity.toString(),
-        });
-  
-        // Reset the form fields
-        this.itemName = '';
-        this.quantity = 1;
-      },
-    },
-  });
-  </script>
+  },
+});
+</script>
+
+<style lang="scss">
+.button {
+  padding: 1px 1px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-size: 20px;
+  font-weight: 1000;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #8fe673;
+    z-index: -1;
+    box-shadow:  31px 31px 74px #4d6b71,
+                -31px -31px 74px #75a3ad;
+    transition: all 300ms
+  }
+
+  &:hover {
+    color: #e8e8e8;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+.itemInput {
+  color: white;
+  background: linear-gradient(145deg, #577a81, #689099);
+  box-shadow:  31px 31px 74px #4d6b71,
+                -31px -31px 74px #75a3ad;
+  &::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+
+}
+
+
+
+
+
+
+</style>

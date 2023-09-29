@@ -1,0 +1,13 @@
+/* src/styles/main.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Your custom CSS goes here */
+.rb {
+    border: 1px solid red;
+  }
+  
+.bb {
+border: 1px solid blue;
+}

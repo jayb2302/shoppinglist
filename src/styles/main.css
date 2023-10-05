@@ -4,10 +4,25 @@
 @import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+
+/* Color Theme Swatches in Hex */
+:root{
+    --blue: #2D3540;
+    --lighterblue: #586473;
+    --orange: #BF9775;
+    --burntorange: #A65729;
+    --brownorange: #733122;
+    --text: #F2F2F2;
+    --texttwo: #0c0b0b;
+}
+
+
+
+
 #app {
-    background: linear-gradient(145deg, #577a81, #689099);
+    background: linear-gradient(145deg, #2D3540, #586473);
     min-height: 100vh;
-    color: white;
+    color: var(--text);
 }
 /* Your custom CSS goes here */
 .rb {

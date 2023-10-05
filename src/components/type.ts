@@ -3,4 +3,5 @@ export interface ShoppingItem {
     name: string;
     quantity: number;
     disabled: boolean;
+    
   }

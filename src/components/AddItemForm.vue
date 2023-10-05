@@ -44,6 +44,7 @@ export default defineComponent({
     return {
       itemName: '',
       quantity: 1,
+      checked: true,
     };
   },
   methods: {
@@ -57,6 +58,7 @@ export default defineComponent({
       this.$emit('addItem', {
         name: this.itemName,
         quantity: this.quantity.toString(),
+        checked: this.checked,
       });
 
       // Reset the form fields
@@ -95,7 +97,7 @@ export default defineComponent({
     background-color: #8fe673;
     z-index: -1;
     box-shadow:  31px 31px 74px #4d6b71,
-                -31px -31px 74px #75a3ad;
+                -31px -31px 74px #2D3540;
     transition: all 300ms
   }
 
@@ -110,9 +112,9 @@ export default defineComponent({
 
 .itemInput {
   color: white;
-  background: linear-gradient(145deg, #577a81, #689099);
-  box-shadow:  31px 31px 74px #4d6b71,
-                -31px -31px 74px #75a3ad;
+  background: linear-gradient(145deg, #2D3540, #586473);
+  box-shadow:  31px 31px 74px #586473,
+                -31px -31px 74px #2D3540;
   &::placeholder {
   color: white;
   opacity: 1;

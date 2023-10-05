@@ -26,19 +26,19 @@
               </svg>
             </label>
           </div>
-          <button @click="updateQuantity(item, item.quantity - 1)" class="minus px-1 py-1 bg-gray-300 text-black  hover:bg-blue-600">-</button>
+          <button @click="updateQuantity(item, item.quantity - 1)" class="minus px-1 py-1 bg-[#BF9775] text-black  hover:bg-blue-600">-</button>
 
           <div class="flex gap-1 mt-3 mb-3 text text-center" :class="{ 'line-through text-gray-100': item.disabled }">
               <p class="itemp text-slate-700 pt-1"> {{ item.name }} <span class="devider border-2 border-slate-400 border-b-indigo-500 mr-2 "> </span> ( {{ item.quantity }} ) </p>
           </div>
-          <button @click="updateQuantity(item, item.quantity + 1)" class="plus px-1 py-1 bg-slate-400 text-black hover:bg-slate-600">
+          <button @click="updateQuantity(item, item.quantity + 1)" class="plus px-1 py-1 bg-[#A65729] text-black hover:bg-slate-600">
             <span> +</span>
           </button>
 
           <div class="gap-2 flex">
             <!-- Buttons to increase/decrease quantity -->
             <!-- Button to delete the item -->
-            <button @click="deleteItem(item.id)" class="delete p-2 bg-red-700 text-white hover:bg-red-800"><span class="x">X</span></button>
+            <button @click="deleteItem(item.id)" class="delete p-2 bg-red-700 text-white hover:bg-[#733122]"><span class="x">X</span></button>
           </div>
         </div>
       </li>
@@ -58,7 +58,9 @@ const shoppingList = ref<ShoppingItem[]>([]);
 const updateQuantity = async (item: ShoppingItem, newQuantity: number) => {
   try {
     const itemRef = doc(db, 'items', item.id);
-    await updateDoc(itemRef, { quantity: newQuantity });
+    await updateDoc(itemRef, { 
+      quantity: newQuantity
+     });
     console.log('Item quantity updated:', item);
   } catch (error) {
     console.error('Error updating item quantity:', error);
@@ -134,16 +136,19 @@ onMounted(() => {
 .shoppingListWrapper {
   max-width: 600px;
   margin: 0 auto;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
 
   .itemCard {
   max-width: 600px;
     margin: 0 auto;
     border-radius: 24px;
-    background: linear-gradient(145deg, #577a81, #689099);
-    box-shadow:  31px 31px 74px #4d6b71,
-                -31px -31px 74px #75a3ad;
+    background: linear-gradient(145deg, #2D3540, #586473);
+    box-shadow:  31px 31px 74px #2D3540,
+                -31px -31px 74px #586473;
     font-family: 'Rajdhani', sans-serif;
     font-size: 20px;
+    text-transform: initial;
   }
 }
 
@@ -154,6 +159,12 @@ onMounted(() => {
   text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
   color: aliceblue;
  
+}
+
+.delete {
+  border-radius: 0;
+  background: none;
+  color: gray;
 }
 
 

@@ -12,7 +12,7 @@ const showRegisterForm = ref(false);
   <div class="appbody">
     <div class="logIn flex flex-row">
       <!-- Log In -->
-      <div @click="showLoginForm = !showLoginForm" class="clickable-text">Log In</div>
+      <div @click="showLoginForm = !showLoginForm" class="clickable-text">Sign In</div>
       <div @click="showRegisterForm = !showRegisterForm" class="clickable-text">Register</div>
     </div>
     <div v-show="showLoginForm" class="div">

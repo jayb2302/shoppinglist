@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import ShoppingList from './components/ShoppingList.vue';
-import UserLogIn from './components/UserLogIn.vue';
-import UserRegister from './components/UserRegister.vue';
+
 
 const showLoginForm = ref(false);
 const showRegisterForm = ref(false);

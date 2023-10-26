@@ -1,30 +1,30 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import ShoppingList from './components/ShoppingList.vue';
 import UserLogIn from './components/UserLogIn.vue';
 import UserRegister from './components/UserRegister.vue';
 
-let showLoginForm = false;
-let showRegisterForm = false;
-
+const showLoginForm = ref(false);
+const showRegisterForm = ref(false);
 </script>
 
 <template>
   <div class="appbody">
     <div class="logIn flex flex-row">
       <!-- Log In -->
-      <div @click="showLoginForm = !showLoginForm" class="clickable-text">Log In</div>
-      <!-- Register -->
+      <div @click="showLoginForm = !showLoginForm" class="clickable-text">Sign In</div>
       <div @click="showRegisterForm = !showRegisterForm" class="clickable-text">Register</div>
-      
-      <!-- Login Form -->
-      <UserLogIn class="w-1/2 flex justify-center content-center" v-if="showLoginForm" />
-      
-      <!-- Register Form -->
-      <UserRegister class="w-1/2 flex justify-center content-center" v-if="showRegisterForm" />
-      
-      
     </div>
-   
+    <div v-show="showLoginForm" class="div">
+      <UserLogIn/>
+    </div>
+    
+    
+      <div v-show="showRegisterForm" class="div">
+        <UserRegister/>
+      </div>
+    
+      
     <ShoppingList />
   </div>
 </template>

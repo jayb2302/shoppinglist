@@ -57,7 +57,7 @@ export default defineComponent({
       // Emit an event to notify the parent component to add the item to the list
       this.$emit('addItem', {
         name: this.itemName,
-        quantity: this.quantity.toString(),
+        quantity: this.quantity,
         checked: this.checked,
       });
 

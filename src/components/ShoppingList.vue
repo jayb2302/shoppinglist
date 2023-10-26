@@ -26,12 +26,12 @@
               </svg>
             </label>
           </div>
-          <button @click="updateQuantity(item, item.quantity - 1)" class="minus px-1 py-1 bg-[#BF9775] text-black  hover:bg-blue-600">-</button>
+          <button @click="updateQuantity(item, - 1)" class="minus px-1 py-1 bg-[#BF9775] text-black  hover:bg-blue-600">-</button>
 
           <div class="flex gap-1 mt-3 mb-3 text text-center" :class="{ 'line-through text-gray-100': item.disabled }">
               <p class="itemp text-slate-700 pt-1"> {{ item.name }} <span class="devider border-2 border-slate-400 border-b-indigo-500 mr-2 "> </span> ( {{ item.quantity }} ) </p>
           </div>
-          <button @click="updateQuantity(item, item.quantity + 1)" class="plus px-1 py-1 bg-[#A65729] text-black hover:bg-slate-600">
+          <button @click="updateQuantity(item, + 1)" class="plus px-1 py-1 bg-[#A65729] text-black hover:bg-slate-600">
             <span> +</span>
           </button>
 
@@ -50,22 +50,12 @@
 import { ref, onMounted, computed } from 'vue';
 import { collection, onSnapshot, doc, updateDoc, deleteDoc, addDoc} from 'firebase/firestore';
 import { db } from '../firebase';
-import { ShoppingItem } from './type';
+import { ShoppingItem } from '../script/type';
 import AddItemForm from './AddItemForm.vue';
 
 const shoppingList = ref<ShoppingItem[]>([]);
 
-const updateQuantity = async (item: ShoppingItem, newQuantity: number) => {
-  try {
-    const itemRef = doc(db, 'items', item.id);
-    await updateDoc(itemRef, { 
-      quantity: newQuantity
-     });
-    console.log('Item quantity updated:', item);
-  } catch (error) {
-    console.error('Error updating item quantity:', error);
-  }
-};
+
 
 const deleteItem = async (itemId: string) => {
   try {
@@ -106,7 +96,19 @@ const toggleItemState = (item: ShoppingItem) => {
 };
 const getCheckboxModel = (item: ShoppingItem) => computed(() => item.disabled);
 
+const updateQuantity = async (item: ShoppingItem, delta: number) => {
+  try {
+    const newQuantity = item.quantity + delta; // Add or subtract 1 from the current quantity
 
+    if (newQuantity >= 0) {
+      const itemRef = doc(db, 'items', item.id);
+      await updateDoc(itemRef, { quantity: newQuantity });
+      console.log('Item quantity updated:', item.quantity);
+    }
+  } catch (error) {
+    console.error('Error updating item quantity:', error);
+  }
+};
 onMounted(() => {
   const itemsCollection = collection(db, 'items');
 
@@ -214,4 +216,4 @@ onMounted(() => {
 
 
   
-</style>
+</style>../script/type

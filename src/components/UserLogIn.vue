@@ -1,3 +1,34 @@
+
+<template>
+    <div  class="w-screen  pb-5  
+        content-center justify-center  ">
+        <div class="container-login flex 
+             mt-6 pt-5 top-20">
+            <div class="card-login gap-6  flex flex-col 
+               items-center">
+                <h1 class="signup pt-5">Log in</h1>
+                <div class="inputBox1">
+                    <input type="text" v-model="email" required>
+                    <span class="user">Email</span>
+                </div>
+
+                <div class="inputBox">
+                    <input v-model="password" 
+                        type="password" 
+                        required>
+                    <span>Password</span>
+                </div>
+
+                <button 
+                    @click="UserLog" class="enter">
+                    Log in
+                </button>
+
+            </div>
+        </div>
+    </div>
+</template>
+
 <script setup lang="ts">
 import { ref} from "vue"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
@@ -33,33 +64,4 @@ const UserLog = () => {
 }
 
 </script>
-<template>
-    <div  class="w-screen  pb-5  
-        content-center justify-center  ">
-        <div class="container-login flex 
-             mt-6 pt-5 top-20">
-            <div class="card-login gap-6  flex flex-col 
-               items-center">
-                <h1 class="signup pt-5">Log in</h1>
-                <div class="inputBox1">
-                    <input type="text" v-model="email" required>
-                    <span class="user">Email</span>
-                </div>
-
-                <div class="inputBox">
-                    <input v-model="password" 
-                        type="password" 
-                        required>
-                    <span>Password</span>
-                </div>
-
-                <button 
-                    @click="UserLog" class="enter">
-                    Log in
-                </button>
-
-            </div>
-        </div>
-    </div>
-</template>
 

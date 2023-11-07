@@ -32,18 +32,16 @@
 <script setup lang="ts">
 import { ref} from "vue"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { useRouter } from 'vue-router'
 const email = ref("");
 const password = ref("")
 const errMsg = ref()
-const router = useRouter()
+
 
 const UserLog = () => {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
-        .then((data) => {
+        .then((_data) => {
             console.log("Successfully signed in!")
-            router.push('/adminhome')
-            console.log("data", data)
+
         })
         .catch((error) => {
             console.log(error.code)

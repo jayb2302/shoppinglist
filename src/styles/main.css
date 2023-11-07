@@ -4,6 +4,8 @@
 @import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url("https://use.typekit.net/pkh6xpq.css");
+
 
 /* Color Theme Swatches in Hex */
 :root{
@@ -12,7 +14,7 @@
     --orange: #BF9775;
     --burntorange: #A65729;
     --brownorange: #733122;
-    --text: #F2F2F2;
+    --text: #181616;
     --texttwo: #0c0b0b;
 }
 
@@ -23,6 +25,14 @@
     background: linear-gradient(145deg, #2D3540, #586473);
     min-height: 100vh;
     color: var(--text);
+    font-family: 'gopher', sans-serif;
+    font-weight: 300;
+
+    h1 {
+        font-family: 'gopher', sans-serif;
+        font-weight: 600;
+
+    }
 }
 /* Your custom CSS goes here */
 .rb {
@@ -31,4 +41,9 @@
   
 .bb {
 border: 1px solid blue;
+}
+
+.background-gradient {
+    background: linear-gradient(145deg, #2D3540, #586473, #af9ea0);
+    
 }

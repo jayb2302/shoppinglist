@@ -12,19 +12,21 @@ const routes = [
         path: '/register',
         name: 'Register',
         //component: UserRegister,
-        component: () => import('./components/UserRegister.vue'),
+        component: () => import('./components/Auth/UserRegister.vue'),
     },
     { 
         path: '/login',
         name: 'UserLogIn',
        // component: UserLogIn,
-        component: () => import('./components/UserLogIn.vue'),
+        component: () => import('./components/Auth/UserLogIn.vue'),
     },
     { 
         path: '/shoppinglist',
         name: 'ShoppingList',
-        component: () => import('./components/ShoppingList.vue'),
+        component: () => import('./components/ShoppingList/ShoppingList.vue'),
     }
+  
+
     // Add more routes here as needed
 ];
 

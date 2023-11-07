@@ -1,14 +1,14 @@
 <template>
-  <div class=" justify-center flex flex-col content-center">
+  <div class="justify-center w-full flex flex-col content-center">
     
-    <form class="flex  pt-4 pb-4 content-center justify-center gap-x-10 " @submit.prevent="addItem">
+    <form class="flex flex-col justify-center  " @submit.prevent="addItem">
       <div class="mb-4">
         <!-- <label for="itemName" class="block text-gray-700 font-semibold mb-2">Item Name:</label> -->
         <input
             v-model="itemName"
             type="text"
             id="itemName"
-            class="itemInput w-54 px-3 py-2  rounded-lg"
+            class="itemInput  px-3 py-2  rounded-lg"
             required
             placeholder="Enter item name"
         />
@@ -44,28 +44,39 @@ export default defineComponent({
     return {
       itemName: '',
       quantity: 1,
-      checked: true,
+      checked: false,
     };
   },
   methods: {
     addItem() {
-      if (this.itemName.trim() === '') {
-        // Prevent adding an empty item
-        return;
-      }
+  if (this.itemName.trim() === '') {
+    // Prevent adding an empty item
+    return;
+  }
 
-      // Emit an event to notify the parent component to add the item to the list
-      this.$emit('addItem', {
-        name: this.itemName,
-        quantity: this.quantity,
-        checked: this.checked,
-      });
+  // Emit an event to notify the parent component to add the item to the list
+  this.$emit('addItem', {
+    name: this.itemName,
+    quantity: this.quantity,
+    checked: false, // Initialize as unchecked
+  });
 
-      // Reset the form fields
-      this.itemName = '';
-      this.quantity = 1;
-    },
-  },
+  // Emit an "itemAdded" event with the new item
+  const newItem = {
+    name: this.itemName,
+    quantity: this.quantity,
+    checked: false,
+  };
+  this.$emit('itemAdded', newItem);
+
+  // Reset the form fields
+  this.itemName = '';
+  this.quantity = 1;
+}
+
+
+},
+
 });
 </script>
 

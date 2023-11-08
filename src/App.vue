@@ -1,27 +1,49 @@
 <template>
-  <div class="appbody">
-    <div class="logIn flex flex-row justify-end">
+  <div class="appbody" >
+    <div class="logIn flex flex-row justify-center absolute ">
       <!-- Sign In button is only visible when the user is not logged in -->
-      <button v-if="!userIsLoggedIn" @click="showLoginForm = !showLoginForm" class="clickable-text">Sign In</button>
+      <button v-if="!showLoginForm && showRegisterForm && !userIsLoggedIn" @click="toggleLoginForm" class="clickable-text button px-2">
+        Sign In
+      </button>
       <!-- Register button is only visible when the user is not logged in -->
-      <button v-if="!userIsLoggedIn" @click="showRegisterForm = !showRegisterForm" class="clickable-text">Register</button>
-      <!-- Sign Out button is only visible when the user is logged in -->
-      <button v-if="userIsLoggedIn" @click="signOut" class="clickable-text">Sign Out</button>
+      <button v-if="showLoginForm && !showRegisterForm && !userIsLoggedIn" @click="toggleRegisterForm"  class="clickable-text button px-2">
+        Register
+      </button>
     </div>
-    <div v-show="showLoginForm && !userIsLoggedIn" class="div">
-      <UserLogIn />
-    </div>
-
-    <div v-show="showRegisterForm && !userIsLoggedIn" class="div">
-      <UserRegister @userRegistered="handleSwitchToLoginForm" />
-    </div>
-    <div v-show="userIsLoggedIn">
-      <button @click="selectShoppingList" class="clickable-text bg-stone-300 p-2 "><label class="corner m-2" for="button">Shopping List</label></button>
-      <button @click="selectPantryList" class="clickable-text  bg-stone-300 p-2"><label class="corner m-2" for="button">Pantry List</label></button>
+    <!-- Sign Out button is only visible when the user is logged in -->
+    <button v-if="userIsLoggedIn" @click="signOut" class="clickable-text absolute right-5 top-4">
+      <div class="tooltip">
+        <img src="./assets/SVG/signout.svg" style="width: 30px; fill: #f2f2f2;" alt="">
+        <span class="tooltiptext">Sign Out</span>
+      </div>
+    </button>
+    <transition name="fade" mode="out-in">
+      <div v-show="showLoginForm && !userIsLoggedIn" class="fadeIn absolute">
+        <UserLogIn />
+      </div>
+    </transition>
+    <transition name="fade" mode="out-in">
+      <div v-show="showRegisterForm && !userIsLoggedIn" class="fadeIn absolute">
+        <UserRegister @userRegistered="handleSwitchToLoginForm" />
+      </div>
+    </transition>
+    <div v-show="userIsLoggedIn" class="">
+      <button @click="selectShoppingList" :class="{ 'selected': selectedComponent === ShoppingList }" class="clickSection px-1 py-2 mx-2 my-2 rounded-lg" >
+        <label class="corner p-2 rounded-lg text-2xl" for="button">
+          Shopping List
+        </label>
+      </button>
+      <button @click="selectPantryList" :class="{ 'selected': selectedComponent === PantryList }" class="clickSection px-1 py-2 rounded-lg ">
+        <label class="corner p-2 rounded-lg text-2xl" for="button">
+          Pantry List
+        </label>
+      </button>
 
       <!-- Display the selected list component -->
-      <component :is="selectedComponent" :shoppingListItems="shoppingListItems" />
-    </div>
+      <Transition name="fade" mode="out-in">
+          <component :is="selectedComponent" :shoppingListItems="shoppingListItems" />
+      </Transition>
+  </div>  
   </div>
 </template>
 
@@ -41,13 +63,23 @@ const signOut = () => {
   auth.signOut();
 };
 
-const showLoginForm = ref(false);
+const showLoginForm = ref(true);
 const showRegisterForm = ref(false);
 const userIsLoggedIn = ref(false);
 
-const handleSwitchToLoginForm = () => {
-  showRegisterForm.value = false;
+const toggleLoginForm = () => {
   showLoginForm.value = true;
+  showRegisterForm.value = false;
+};
+
+const toggleRegisterForm = () => {
+  showRegisterForm.value = true;
+  showLoginForm.value = false;
+};
+
+const handleSwitchToLoginForm = () => {
+  showLoginForm.value = true;
+  showRegisterForm.value = false;
 };
 // Initialize selectedComponent as null
 const selectedComponent = ref<null | typeof ShoppingList | typeof PantryList>(null);
@@ -66,7 +98,6 @@ const shoppingListItems = ref([]);
 // onMounted function not used in setup but required for lifecycle hooks
 onMounted(() => {});
 
-
 onAuthStateChanged(auth, (user) => {
   userIsLoggedIn.value = !!user;
 });
@@ -77,11 +108,70 @@ onAuthStateChanged(auth, (user) => {
 
 <style scoped lang="scss">
 
-.clickable-text {
-  cursor: pointer;
-  border-right: 1px solid #e8e8e8;
-  .corner {
-    background-color: #cdcaca;
+.clickSection {
+  background-color: var(--white);
+  &:focus {
+    background-color: #3e86b6;
   }
+  
+  &:hover {
+    background: #3e86b69c;
+    transition: background-color 0.3s;
+    
+  }
+  
+  .corner{
+    background: var(--white);
+  }
+  }
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+  .tooltiptext {
+    visibility: hidden;
+    background-color: var(--tooltip) ;
+    color: var(--white);
+    text-align: center;
+    width: 120px;
+    border-radius: 6px;
+    padding: 5px 0;
+    right: -5%;
+    top: 0;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+   
+  }
+  &:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    right: 10%;
+    transition: opacity 0.3s;
+    
+  }
+}
+
+.logIn{
+ right: 50%;
+ top: 20%;
+  transform: translate(50%, 50%);
+}
+.fadeIn {
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+  transform: translateX(0px);
+  transition: transform 0.4s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translatey(800px);
 }
 </style>

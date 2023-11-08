@@ -1,28 +1,36 @@
 <template>
-    <div>
-      <h2>User Registration</h2>
-      <form @submit.prevent="registerUser">
-      
-        <input
-          class="block mb-2 text-lg font-medium text-gray-900 bg-slate-100 dark:text-white"
-          v-model="email"
-          type="email"
-          placeholder="Email"
-        />
-        <input
-          class="block mb-2 text-lg font-medium text-gray-900 bg-slate-100 dark:text-white"
-          v-model="password"
-          type="password"
-          placeholder="Password"
-        />
-        <input
-        class="block mb-2 text-lg font-medium text-gray-900 bg-slate-100 dark:text-white"
-        v-model="displayName"
-        type="text"
-        placeholder="Display Name"
-        />
-        <button type="submit">Register</button>
-      </form>
+    <div class="flex  pb-5 justify-center">
+      <div class="container-login flex flex-col item-background mt-6 pt-5 top-20  p-5">
+             <div class="card-login background-gradient p-4 gap-6 flex flex-col items-center">
+                <h2 class="pt-5">Sign Up Now!</h2>
+                <form @submit.prevent="registerUser">
+                  <div class="flex flex-col gap-5">
+                  <input
+                    class="px-3 py-2  rounded-lg flex  "
+                    v-model="email"
+                    type="email"
+                    placeholder="Email"
+                  />
+                  <input
+                    class="px-3 py-2  rounded-lg flex "
+                    v-model="password"
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <input
+                  class="px-3 py-2  rounded-lg flex "
+                  v-model="displayName"
+                  type="text"
+                  placeholder="Display Name"
+                  />
+                  <div class="flex justify-center">
+                  <button class="button enter px-4" type="submit">Sign Up</button>
+                  </div>
+                  </div>
+                  
+                </form>
+             </div>
+      </div>
     </div>
 </template>
   

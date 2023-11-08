@@ -1,49 +1,102 @@
 /* src/styles/main.css */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap");
 @import url("https://use.typekit.net/pkh6xpq.css");
 
-
 /* Color Theme Swatches in Hex */
-:root{
-    --blue: #2D3540;
-    --lighterblue: #586473;
-    --orange: #BF9775;
-    --burntorange: #A65729;
-    --brownorange: #733122;
-    --text: #181616;
-    --texttwo: #0c0b0b;
+:root {
+  --text: rgb(21, 21, 19);
+  --texttwo: rgb(55, 51, 51);
+  --gray: #968a8a;
+  --lightgray: rgb(207, 202, 202);
+  --lightbeige: #d9cdc0;
+  --offwhite: #d9cdbf;
+  --white: #f2f2f2;
+  --tooltip: #403f3dba; 
 }
 
-
-
-
 #app {
-    background: linear-gradient(145deg, #2D3540, #586473);
+    background: repeating-linear-gradient(
+    45deg,
+    #333333 0,
+    #333333 5%,
+    #4f4f4f 0,
+    #4f4f4f 50%
+    )
+    0 / 10px 10px;
     min-height: 100vh;
     color: var(--text);
-    font-family: 'gopher', sans-serif;
+    font-family: "gopher", sans-serif;
     font-weight: 300;
+}
 
-    h1 {
-        font-family: 'gopher', sans-serif;
-        font-weight: 600;
+h1 {
+  font-family: 'gopher', sans-serif;
+  font-weight: 600;
+  
+}
 
-    }
+h2 {
+    font-family: 'gopher', sans-serif;
+    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3),
+    0px -7px 10px rgba(255, 255, 255, 0.3, ), -4px 2px 3px rgba(255, 255, 255, 0.3);
+    font-size: 2.5rem;
+    font-weight: 900;
+  
+}
+
+input {
+    color: var(--texttwo);
+    background: linear-gradient(155deg, #ecd8d8 , var(--lightgray) 50%, var(--lightgray) 50%, #a9a7a7 100%);
+    box-shadow:  31px 31px 74px #b8bcc1,
+                  -31px -31px 74px #d5d8da, rgba(239, 237, 237, 0.592) 0px 30px 60px -12px inset, rgb(238, 236, 234) 0px 18px 36px -18px inset;
+}
+input::placeholder {
+  color: var(--texttwo);
 }
 /* Your custom CSS goes here */
 .rb {
-    border: 1px solid red;
-  }
-  
+  border: 1px solid red;
+}
+
 .bb {
-border: 1px solid blue;
+  border: 1px solid blue;
 }
 
 .background-gradient {
-    background: linear-gradient(145deg, #2D3540, #586473, #af9ea0);
-    
+  background: linear-gradient(
+    155deg,
+    var(--lightgray),
+    var(--lightgray) 50%,
+    var(--lightgray) 50%,
+    var(--lightgray) 100%
+  );
+  transition: all 0.9s ease-in-out;
 }
+.item-background {
+  background: repeating-linear-gradient(
+      45deg,
+      #333333 0,
+      #333333 5%,
+      #4f4f4f 0,
+      #4f4f4f 50%
+    )
+    0 / 10px 10px;
+  border-radius: 30px;
+}
+
+.active-button {
+  color: var(--text);
+  transition: all 0.9s ease-in-out;
+  background-color: var(--white);
+}
+.clickable-text {
+    cursor: pointer;
+   
+}
+
+
+/* == Transitions == */

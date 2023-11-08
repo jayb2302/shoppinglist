@@ -1,26 +1,32 @@
 
 <template>
-    <div  class="w-screen  pb-5  
-        content-center justify-center  ">
-        <div class="container-login flex 
-             mt-6 pt-5 top-20">
-            <div class="card-login gap-6  flex flex-col 
+    <div class="background-gradient flex py-3 content-center justify-center px-3  ">
+        <div class="container-login flex item-background
+               top-20  p-2">
+            <div class="card-login background-gradient cursor-default p-4 gap-6  flex flex-col 
                items-center">
-                <h1 class="signup pt-5">Log in</h1>
-                <div class="inputBox1">
-                    <input type="text" v-model="email" required>
-                    <span class="user">Email</span>
+                <h2 class="signup pt-5">Log in</h2>
+                <div class="inputBox1 flex flex-col">
+                    <input
+                    class=" px-3 py-2  rounded-lg"
+                    type="text"
+                    v-model="email"
+                    placeholder="Email"
+                    required>                
                 </div>
 
-                <div class="inputBox">
-                    <input v-model="password" 
-                        type="password" 
-                        required>
-                    <span>Password</span>
+                <div class="inputBox flex flex-col">
+                    <input
+                    class=" px-3 py-2  rounded-lg"
+                    v-model="password" 
+                    placeholder="Password"
+                    type="password" 
+                    required>
                 </div>
 
-                <button 
-                    @click="UserLog" class="enter">
+                <button
+                    :class="{'disabled': !email || !password}" 
+                    @click="UserLog" class="enter button px-4">
                     Log in
                 </button>
 

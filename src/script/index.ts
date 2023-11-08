@@ -6,14 +6,14 @@ export interface CombinedUser  {
   email: UserInfo['email'];
   username: string | null; 
   shoppingLists: string[];
-  // Add the username property
 }
 // User structure (for authentication)
 export interface User extends UserInfo {
   uid: string;
   email: string;
   username: string | null ; // Add the username property
-  shoppingLists: string[]; // Add other properties you need
+  shoppingLists: string[]; 
+
 }
 // Shopping item structure
 export interface ShoppingItem {
@@ -21,10 +21,18 @@ export interface ShoppingItem {
   name: string;
   quantity: number;
   checked: boolean;
+  timestamp: string;
+  unit: string;
+  notes: string;
+  store: string;
 }
 
 // Shopping list template structure
-
+export interface ShoppingListTemplate {
+  id: string;
+  name: string;
+  items: ShoppingItem[]; // Each template has an array of items
+}
 
 // Pantry item structure
 export interface PantryItem {

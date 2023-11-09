@@ -25,13 +25,13 @@
             required
         />
 
-        <select v-model="unit"  class="rounded-lg itemInput border p-2">
+        <select id="unit" v-model="unit"  class="rounded-lg itemInput border p-2">
           <option value="kg">pcs</option>
           <option value="g">kg</option>
           <option value="pcs">g</option>
           <!-- Add other unit options as needed -->
         </select>
-        <select v-model="store"  class="rounded-lg itemInput border p-2">
+        <select id="store" v-model="store"  class="rounded-lg itemInput border p-2">
           <option value="Netto">Netto</option>
           <option value="Lidl">Lidl</option>
           <option value="Spar">Spar</option>
@@ -49,6 +49,7 @@
         />
       <div class="mb-4  self-center  ">
         <button
+        id="submitItem"
           type="submit"
           class="button add m-2 p-3 rotate-90 "
         >

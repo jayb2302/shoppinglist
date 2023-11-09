@@ -2,11 +2,11 @@
   <div class="appbody" >
     <div class="logIn flex flex-row justify-center absolute ">
       <!-- Sign In button is only visible when the user is not logged in -->
-      <button v-if="!showLoginForm && showRegisterForm && !userIsLoggedIn" @click="toggleLoginForm" class="clickable-text button px-2">
+      <button id="SignIn" v-if="!showLoginForm && showRegisterForm && !userIsLoggedIn" @click="toggleLoginForm" class="clickable-text button px-2">
         Sign In
       </button>
       <!-- Register button is only visible when the user is not logged in -->
-      <button v-if="showLoginForm && !showRegisterForm && !userIsLoggedIn" @click="toggleRegisterForm"  class="clickable-text button px-2">
+      <button id="Register" v-if="showLoginForm && !showRegisterForm && !userIsLoggedIn" @click="toggleRegisterForm"  class="clickable-text button px-2">
         Register
       </button>
     </div>

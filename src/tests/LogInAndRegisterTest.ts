@@ -1,18 +1,34 @@
 import { Selector } from 'testcafe';
 
-fixture `Register Form Visibility Test`
-    .page `http://localhost:5173npm/`;
+fixture `Shopping App Test`
+    .page `http://localhost:5173/`
 
-test('Register Form Shows When Register Button is Clicked', async t => {
-    const registerButton = Selector('.clickable-text').withText('Register');
-    const registerForm = Selector('UserRegister'); // replace with your actual register form selector
-
-    // Check if the register form is not visible
-    await t.expect(registerForm.visible).notOk();
-
-    // Click the register button
-    await t.click(registerButton);
-
-    // Check if the register form is visible
-    await t.expect(registerForm.visible).ok();
-});
+    test('Click Register Button to Show Register Modal', async t => {
+        // Click the "Register" button
+        const registerButton = Selector('#Register')
+        await t.click(registerButton);
+    
+        // Add assertions to verify the registration modal is visible
+        const registerModal = Selector('div').withText('Sign Up Now!')
+        await t.expect(registerModal.visible).ok()
+    });
+    
+    test('User Sign In', async t => {
+       
+        // Add assertions to verify the sign-in modal is visible
+        const signInModal = Selector('div').withText('Log in')
+        await t.expect(signInModal.visible).ok()
+    
+        // Type the email and password
+        const emailInput = Selector('input[type="text"]');
+        const passwordInput = Selector('input[type="password"]');
+        const logInButton = Selector('button').withText('Log in');
+    
+        await t
+            .typeText(emailInput, 'jonfreyr450@gmail.com')
+            .typeText(passwordInput, 'melludolgur')
+            .click(logInButton);
+    });
+    
+    
+    

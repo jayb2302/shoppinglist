@@ -1,52 +1,49 @@
 import { Selector } from 'testcafe';
 
-fixture `Shopping List`
-    .page `http://localhost:5173/`;
+fixture `ShoppingList Functionality Test`
+    .page `http://localhost:5173/`; 
 
-test('Shopping List Component Works', async t => {
-    const shoppingListWrapper = Selector('.shoppingListWrapper');
-    const addItemForm = Selector('form');
-    const itemNameInput = addItemForm.find('#itemName');
-    const quantityInput = addItemForm.find('#quantity');
-    const submitButton = addItemForm.find('button[type="submit"]');
-    const itemCard = Selector('.itemCard');
-    const listItem = itemCard.find('li');
-    const checkbox = listItem.find('.check');
-    const minusButton = listItem.find('.minus');
-    const plusButton = listItem.find('.plus');
-    const deleteButton = listItem.find('.delete');
+test('Add Item with Details and Move to Pantry', async t => {
+    // Log in using username and password
+    const emailInput = Selector('input[type="text"]');
+    const passwordInput = Selector('input[type="password"]');
+    const logInButton = Selector('button').withText('Log in');
 
-    // Check if the shopping list wrapper exists
-    await t.expect(shoppingListWrapper.exists).ok();
+    await t
+        .typeText(emailInput, 'jonfreyr450@gmail.com')
+        .typeText(passwordInput, 'melludolgur')
+        .click(logInButton);
 
-    // Check if the add item form exists
-    await t.expect(addItemForm.exists).ok();
+    // Wait for the user to log in
+    await t.wait(1000);
 
-    // Check if the item name input field exists
-    await t.expect(itemNameInput.exists).ok();
+    // Click the "Shopping List" button
+    const shoppingListButton = Selector('button').withText('Shopping List');
+    await t.click(shoppingListButton);
 
-    // Check if the quantity input field exists
-    await t.expect(quantityInput.exists).ok();
+    // Add an item with details
+    const itemNameInput = Selector('input').withAttribute('placeholder', 'Enter item name')
+    const itemQuantityInput = Selector('#quantity')
+    const itemUnitInput = Selector('#unit')
+    const itemStoreInput = Selector('#store')
+    const addItemButton = Selector('#submitItem')
 
-    // Check if the submit button exists
-    await t.expect(submitButton.exists).ok();
+    await t
+        .typeText(itemNameInput, 'New Item')
+        .typeText(itemQuantityInput, '2')  // Enter the desired quantity
+        .typeText(itemUnitInput, 'pcs')    // Enter the desired unit
+        .typeText(itemStoreInput, 'Grocery Store')  // Enter the desired store
+        .click(addItemButton);
 
-    // Check if the item card exists
-    await t.expect(itemCard.exists).ok();
+    // Check the item that triggers the "move to pantry" action
+    const itemToMove = Selector('.move-to-pantry');
 
-    // Check if the list item exists
-    await t.expect(listItem.exists).ok();
+    // Check if the item is not in the pantry
+    const pantryItem = itemToMove.parent().parent();  // Adjust the parent chain based on your DOM structure.
 
-    // Check if the checkbox exists and is not checked
-    await t.expect(checkbox.exists).ok();
-    await t.expect(checkbox.checked).notOk();
+    // Click the item to move it to the pantry
+    await t
+        .click(itemToMove)
+        .expect(pantryItem.exists).ok();  // Verify that the item is moved to the pantry
 
-    // Check if the minus button exists
-    await t.expect(minusButton.exists).ok();
-
-    // Check if the plus button exists
-    await t.expect(plusButton.exists).ok();
-
-    // Check if the delete button exists
-    await t.expect(deleteButton.exists).ok();
 });

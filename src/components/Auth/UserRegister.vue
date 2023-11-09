@@ -1,4 +1,4 @@
-<template>
+w<template>
     <div class="background-gradient flex  justify-center content-center px-2 ">
       <div class="container-login flex flex-col item-background my-3 top-20  p-3">
              <div class="card-login background-gradient p-4 gap-6 flex flex-col items-center">

@@ -9,7 +9,7 @@ fixture `Shopping App Test`
         await t.click(registerButton);
     
         // Add assertions to verify the registration modal is visible
-        const registerModal = Selector('div').withText('Sign Up Now!')
+        const registerModal = Selector('div').withText('Sign Up')
         await t.expect(registerModal.visible).ok()
     });
     

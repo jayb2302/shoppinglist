@@ -11,7 +11,7 @@ export interface CombinedUser  {
 export interface User extends UserInfo {
   uid: string;
   email: string;
-  username: string | null ; // Add the username property
+  username: string ; // Add the username property
   shoppingLists: string[]; 
 }
 // Shopping item structure

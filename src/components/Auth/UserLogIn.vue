@@ -20,13 +20,13 @@
                     v-model="password" 
                     placeholder="Password"
                     type="password" 
-                    @keyup.enter="UserLog"
+                    @keyup.enter="userLog"
                     required>
                 </div>
 
                 <button
                     :class="{'disabled': !email || !password}" 
-                    @click="UserLog" class="enter button px-4"
+                    @click="userLog" class="enter button px-4"
                     
                     >
                     
@@ -40,35 +40,35 @@
 
 <script setup lang="ts">
 import { ref} from "vue"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { logUserIn } from "../../script/useAuth"
+
 const email = ref("");
 const password = ref("")
-const errMsg = ref()
 
+const userLog = () => logUserIn(email.value, password.value)
 
-const UserLog = () => {
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
-        .then((_data) => {
-            console.log("Successfully signed in!")
-
-        })
-        .catch((error) => {
-            console.log(error.code)
-            switch (error.code) {
-                case "auth/invalid-email":
-                    errMsg.value = "Invalid email";
-                    break;
-                case "auth/user-not-found":
-                    errMsg.value = "No account with that email was found";
-                    break;
-                case "auth/wrong-password":
-                    errMsg.value = "Incorrect password";
-                    break;
-                default:
-                    errMsg.value = "Email or password was incorrect"
-            }
-        })
-}
+// const UserLog = () => {
+//     signInWithEmailAndPassword(getAuth(), email.value, password.value)
+//         .then((_data) => {
+//             console.log("Successfully signed in!")
+//         })
+//         .catch((error) => {
+//             console.log(error.code)
+//             switch (error.code) {
+//                 case "auth/invalid-email":
+//                     errMsg.value = "Invalid email";
+//                     break;
+//                 case "auth/user-not-found":
+//                     errMsg.value = "No account with that email was found";
+//                     break;
+//                 case "auth/wrong-password":
+//                     errMsg.value = "Incorrect password";
+//                     break;
+//                 default:
+//                     errMsg.value = "Email or password was incorrect"
+//             }
+//         })
+// }
 
 </script>
 

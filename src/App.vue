@@ -61,7 +61,6 @@ import PantryList from './components/Pantry/PantryList.vue';
 import UserLogIn from './components/Auth/UserLogIn.vue';
 import UserRegister from './components/Auth/UserRegister.vue';
 
-
 const auth = getAuth();
 const signOut = () => {
   auth.signOut();
@@ -92,6 +91,8 @@ const selectShoppingList = () => {
   selectedComponent.value = markRaw(ShoppingList);
 };
 
+selectShoppingList();
+
 const selectPantryList = () => {
   selectedComponent.value = markRaw(PantryList);
 };
@@ -106,9 +107,6 @@ onAuthStateChanged(auth, (user) => {
   userIsLoggedIn.value = !!user;
 });
 </script>
-
-
-
 
 <style scoped lang="scss">
 
@@ -179,7 +177,12 @@ onAuthStateChanged(auth, (user) => {
   right: 50%;
   bottom: 50%;
   transform: translate(50%, 50%);
-  
+  // smá stuuuuuuuund þangað til eg hringi
+  // ❤️❤️ teach me !!!!
+
+  // Nenniru að deila terminals með mér?
+
+
 }
 
 .fade-enter-active,
@@ -203,4 +206,6 @@ onAuthStateChanged(auth, (user) => {
 .fadeIn-enter-from,
 .fadeIn-leave-to {
   opacity: 0;
-}</style>
+}
+
+</style>

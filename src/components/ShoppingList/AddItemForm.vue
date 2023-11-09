@@ -26,9 +26,9 @@
         />
 
         <select id="unit" v-model="unit"  class="rounded-lg itemInput border p-2">
-          <option value="kg">pcs</option>
-          <option value="g">kg</option>
-          <option value="pcs">g</option>
+          <option value="pcs">pcs</option>
+          <option value="kg">kg</option>
+          <option value="g">g</option>
           <!-- Add other unit options as needed -->
         </select>
         <select id="store" v-model="store"  class="rounded-lg itemInput border p-2">
@@ -70,8 +70,6 @@ export default defineComponent({
   setup() {
     const currentDate = ref<string>(new Date().toDateString());
     
-    
-
     onMounted(() => {
       // Update the date periodically, e.g., every second
       setInterval(() => {
@@ -93,43 +91,44 @@ export default defineComponent({
       store: 'Netto',
     };
   },
+
   methods: {
     addItem() {
-  if (this.itemName.trim() === '') {
-    const toast = useToast();
-    // Prevent adding an empty item
-    toast.error('Please enter an item name');
-    return;
+      if (this.itemName.trim() === '') {
+        const toast = useToast();
+        // Prevent adding an empty item
+        toast.error('Please enter an item name');
+        return;
+      }
+
+      // Emit an event to notify the parent component to add the item to the list
+      this.$emit('addItem', {
+        name: this.itemName,
+        quantity: this.quantity,
+        unit: this.unit,
+        checked: false,
+        notes: '',
+        store: 'Netto',
+      });
+
+      // Emit an "itemAdded" event with the new item
+      const newItem = {
+        name: this.itemName,
+        quantity: this.quantity,
+        checked: false,
+        unit: this.unit,
+        notes: '',
+        store: 'Netto',
+      };
+      this.$emit('itemAdded', newItem);
+
+      // Reset the form fields
+      this.itemName = '';
+      this.quantity = 1;
+      this.unit = 'pcs';
+      this.notes = '';
+      this.store = '...';
   }
-
-  // Emit an event to notify the parent component to add the item to the list
-  this.$emit('addItem', {
-    name: this.itemName,
-    quantity: this.quantity,
-    unit: this.unit,
-    checked: false,
-    notes: '',
-    store: 'Netto',
-  });
-
-  // Emit an "itemAdded" event with the new item
-  const newItem = {
-    name: this.itemName,
-    quantity: this.quantity,
-    checked: false,
-    unit: this.unit,
-    notes: '',
-    store: 'Netto',
-  };
-  this.$emit('itemAdded', newItem);
-
-  // Reset the form fields
-  this.itemName = '';
-  this.quantity = 1;
-  this.unit = 'pcs';
-  this.notes = '';
-  this.store = '...';
-}
 
 },
 

@@ -75,12 +75,13 @@ import { ref, onMounted, defineEmits } from 'vue';
 import { db } from '../../firebase';
 import { onSnapshot, collection, DocumentData, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { useToast } from 'vue-toastification';
-
+import { formatDate } from '../../script/useUtils';
 const pantryItems = ref<DocumentData[]>([]);
 const displayedItems = ref<DocumentData[]>([]);
 const categoryFilter = ref('');
 const activeFilter = ref('');
 const emit = defineEmits(['moveToShoppingList']);
+
 
 const fetchPantryItems = async () => {
   try {
@@ -107,14 +108,6 @@ const fetchPantryItems = async () => {
   }
 };
 
-
-const formatDate = (timestamp: number) => {
-  return new Date(timestamp).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-};
 
 const moveItem = async (item: DocumentData, category: string) => {
   try {

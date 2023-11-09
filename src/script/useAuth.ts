@@ -6,23 +6,31 @@ const auth = getAuth(); // Initialize Firebase Auth
 
 export const user: Ref<CombinedUser | null> = ref(null);
 
-export async function login(email: string, password: string): Promise<void> {
+// Firebase error codes mapped to human readable strings
+const errorCodeMap: Record<string, string> = {
+  "auth/invalid-email": "Invalid email",
+  "auth/user-not-found": "No account with that email was found",
+  "auth/wrong-password": "Incorrect password",
+};
+export const logUserIn = async (email: string, password: string): Promise<boolean | string> => {
   try {
     const userCredential: UserCredential = await signInWithEmailAndPassword(auth, email, password);
     const firebaseUser: FirebaseAuthUser = userCredential.user;
     user.value = {
       uid: firebaseUser.uid,
       email: firebaseUser.email,
-      username: '' , 
-      shoppingLists: [], 
-     
+      username: '',
+      shoppingLists: [],
     };
-  } catch (error) {
-    // Handle login error
-    console.error('Login error:', error);
-    throw error;
+    return true;
+  } catch (error: any) {
+    console.error('Firebase Authentication Error:', error);
+    const errorMessage = errorCodeMap[error.code] || 'Unknown error';
+    console.error('Mapped Error Message:', errorMessage);
+    return errorMessage;
   }
-}
+};
+
 
 export async function logOut(): Promise<void> {
   try {
@@ -33,3 +41,6 @@ export async function logOut(): Promise<void> {
     console.error('Logout error:', error);
   }
 }
+
+
+

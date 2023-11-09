@@ -3,7 +3,7 @@
     <!-- /** Pantry to get overview of item status */ -->
     <h2 class="mb-1 ml-3 absolute right-5 opacity-40">Pantry</h2>
     <aside class="mb-5">
-      <div class="ml-5 pt-4  flex  gap-4 ">
+      <div class="ml-5 pt-4  flex  gap-4 text-sm md:text-2xl">
         <button @click="showAllItems" :class="{ 'active-button': isActive('all') }"
           class="button  px-4 py-2 rounded-md mr-4">
           Show All
@@ -18,14 +18,14 @@
         </button>
       </div>
     </aside>
-    <div class="flex flex-col item-background cursor-default relative right-0 mx-16 mb-5">
-      <ul class="p-4 flex gap-3 flex-wrap justify-evenly  pb-3 ">
-        <li class="w-[300px]" v-for="item in displayedItems" :key="item.id">
+    <div class="flex md:flex-col item-background cursor-default relative  right-0 mx-1 md:mx-16 mb-5 ">
+      <ul class="p-4 md:p-4 flex gap-1 md:gap-3 flex-wrap h-[75vh] md:h-[75vh] overflow-y-auto justify-evenly  md:pb-3 ">
+        <li class="w-[160px]  md:w-[300px]" v-for="item in displayedItems" :key="item.id">
           <transition name="fade" mode="out-in">
             <div :key="item.id">
-              <div class="p-4 bg-white  shadow-md rounded-lg">
+              <div class="md:p-4 bg-white h-48 shadow-md rounded-lg pt-2">
               <div class="flex justify-between">
-                <img id="itemArrow" class="rotate-90 opacity-30 " src="../../assets/SVG/arrow.svg" style="width: 20px;" alt=""> 
+                <img id="itemArrow" class="rotate-90 opacity-20 pl-1 " src="../../assets/SVG/arrow.svg" style="width: 20px;" alt=""> 
                 <i>
                  {{ formatDate(item.timestamp )}}
                  </i> 
@@ -50,7 +50,7 @@
                   </div>
 
                   <div id="pantry" class="pantry flex mx-auto">
-                    <button @click="moveItem(item, 'Cabinet')" class="cabinet py-2 -mr-2 rounded-md">
+                    <button @click="moveItem(item, 'Cabinet')" class="cabinet py-2 md:-mr-2 rounded-md">
                       <img id="img" src="../../assets/SVG/cabinet.svg" style="width: 30px; height: 40px; " alt="">
                     </button>
                     <button @click="moveItem(item, 'Fridge')" class="fridge py-2 -ml-1 rounded-md">
@@ -172,6 +172,7 @@ onMounted(() => {
   fetchPantryItems();
 });
 </script>
+
 <style lang="scss">
 
 

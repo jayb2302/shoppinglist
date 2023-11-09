@@ -1,5 +1,5 @@
 <template>
-  <div class="justify-center w-full px-2 flex flex-col content-center">
+  <div class="justify-center  px-2 flex flex-col content-center">
     <form class="flex flex-col  " @submit.prevent="addItem">
     <h3 class="pb-1" >Today is {{ currentDate }}</h3>
     <p class="pb-3">What is missing today?</p>
@@ -201,13 +201,5 @@ export default defineComponent({
   }
   }
 }
-
-
-
-
-
-
-
-
 
 </style>

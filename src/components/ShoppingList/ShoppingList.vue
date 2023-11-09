@@ -1,7 +1,7 @@
 <template>
-  <div class=" flex">
+  <div class="flex flex-col md:flex-row md:h-[85vh]">
     <!-- Sidebar -->
-    <aside class="background-gradient w-72 min-h-screen p-2">
+    <aside class="background-gradient md:w-72 p-2">
       <h1 class="text-2xl">Welcome back</h1><strong>{{ currentUser && currentUser.displayName ? currentUser.displayName : 'Loading...' }}</strong>
       <AddItemForm class="mt-5" @addItem="addItemToList" />
     </aside>

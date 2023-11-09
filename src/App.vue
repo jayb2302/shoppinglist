@@ -17,12 +17,12 @@
         <span class="tooltiptext">Sign Out</span>
       </div>
     </button>
-    <transition name="fade" mode="out-in">
+    <transition name="fadeIn" mode="out-in">
       <div v-show="showLoginForm && !userIsLoggedIn" class="fadeIn absolute">
         <UserLogIn />
       </div>
     </transition>
-    <transition name="fade" mode="out-in">
+    <transition name="fadeIn" mode="out-in">
       <div v-show="showRegisterForm && !userIsLoggedIn" class="fadeIn absolute">
         <UserRegister @userRegistered="handleSwitchToLoginForm" />
       </div>
@@ -173,5 +173,13 @@ onAuthStateChanged(auth, (user) => {
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
   transform: translatey(800px);
+}
+.fadeIn-enter-active, .fadeIn-leave-active {
+  transition: opacity 0.5s;
+ 
+}
+.fadeIn-enter-from, .fadeIn-leave-to {
+  opacity: 0;
+ 
 }
 </style>

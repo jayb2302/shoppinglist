@@ -1,8 +1,8 @@
 <template>
-  <ul class="item-background p-4 mx-40  divide-y divide-gray-300">
+  <ul class="item-background p-4 md:mx-40  divide-y divide-gray-300">
     <li v-for="item in shoppingList" :key="item.id" class="mb-2 rounded-lg">
       <div class="flex items-center  p-1 bg-white shadow-md rounded-lg">
-        <div class="w-1/3 flex justify-center gap-1 mt-3 mb-3 text text-center" :class="{ 'line-through text-gray-100': item.checked }">
+        <div class="w-1/3 flex justify-center gap-1 mt-3 mb-3 text text-center" :class="{ 'line-through': item.checked }">
           <p class="itemp text-slate-700 capitalize pt-1">
             {{ item.name }}
           <span class="devide-y-2 border border-slate-200 mr-2"></span>
@@ -17,7 +17,7 @@
           </svg>
         </button>
         <p>
-          ( {{ item.quantity }} ){{ item.unit }} 
+          ( {{ item.quantity }} ) <strong>{{ item.unit }} </strong>
         </p>
           <button @click="updateQuantity(item, 1)" class="">
           <svg enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="20" width="20"/>

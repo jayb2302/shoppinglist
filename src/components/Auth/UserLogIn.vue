@@ -1,12 +1,11 @@
 
 <template>
     <div class="background-gradient flex py-3 content-center justify-center px-3  ">
-        <div class="container-login flex item-background
-               top-20  p-2">
+        <div class="container-login flex item-background top-20  p-3">
             <div class="card-login background-gradient cursor-default p-4 gap-6  flex flex-col 
                items-center">
                 <h2 class="signup pt-5">Log in</h2>
-                <div class="inputBox1 flex flex-col">
+                <div class="inputBox1 flex flex-col px-3">
                     <input
                     class=" px-3 py-2  rounded-lg"
                     type="text"
@@ -21,12 +20,16 @@
                     v-model="password" 
                     placeholder="Password"
                     type="password" 
+                    @keyup.enter="UserLog"
                     required>
                 </div>
 
                 <button
                     :class="{'disabled': !email || !password}" 
-                    @click="UserLog" class="enter button px-4">
+                    @click="UserLog" class="enter button px-4"
+                    
+                    >
+                    
                     Log in
                 </button>
 

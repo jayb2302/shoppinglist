@@ -13,9 +13,9 @@ export async function login(email: string, password: string): Promise<void> {
     user.value = {
       uid: firebaseUser.uid,
       email: firebaseUser.email,
-      username: '' , // Set the username property to an empty string
-      shoppingLists: [], // Set shoppingLists to an empty array initially
-      // Add other properties from the CombinedUser interface
+      username: '' , 
+      shoppingLists: [], 
+     
     };
   } catch (error) {
     // Handle login error

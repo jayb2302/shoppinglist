@@ -1,12 +1,14 @@
 <template>
-  <div class="appbody" >
+  <div class="appbody">
     <div class="logIn flex flex-row justify-center absolute ">
       <!-- Sign In button is only visible when the user is not logged in -->
-      <button id="SignIn" v-if="!showLoginForm && showRegisterForm && !userIsLoggedIn" @click="toggleLoginForm" class="clickable-text button px-2">
+      <button id="SignIn" v-if="!showLoginForm && showRegisterForm && !userIsLoggedIn" @click="toggleLoginForm"
+        class="clickable-text button py-2 px-4">
         Sign In
       </button>
       <!-- Register button is only visible when the user is not logged in -->
-      <button id="Register" v-if="showLoginForm && !showRegisterForm && !userIsLoggedIn" @click="toggleRegisterForm"  class="clickable-text button px-2">
+      <button id="Register" v-if="showLoginForm && !showRegisterForm && !userIsLoggedIn" @click="toggleRegisterForm"
+        class="clickable-text button py-2 px-4">
         Register
       </button>
     </div>
@@ -28,12 +30,14 @@
       </div>
     </transition>
     <div v-show="userIsLoggedIn" class="">
-      <button @click="selectShoppingList" :class="{ 'selected': selectedComponent === ShoppingList }" class="clickSection px-1 py-2 mx-2 my-2 rounded-lg" >
+      <button @click="selectShoppingList" :class="{ 'selected': selectedComponent === ShoppingList }"
+        class="clickSection px-1 py-2 mx-2 my-2 rounded-lg">
         <label class="corner p-2 rounded-lg text-2xl" for="button">
           Shopping List
         </label>
       </button>
-      <button @click="selectPantryList" :class="{ 'selected': selectedComponent === PantryList }" class="clickSection px-1 py-2 rounded-lg ">
+      <button @click="selectPantryList" :class="{ 'selected': selectedComponent === PantryList }"
+        class="clickSection px-1 py-2 rounded-lg ">
         <label class="corner p-2 rounded-lg text-2xl" for="button">
           Pantry List
         </label>
@@ -41,9 +45,9 @@
 
       <!-- Display the selected list component -->
       <Transition name="fade" mode="out-in">
-          <component :is="selectedComponent" :shoppingListItems="shoppingListItems" />
+        <component :is="selectedComponent" :shoppingListItems="shoppingListItems" />
       </Transition>
-  </div>  
+    </div>
   </div>
 </template>
 
@@ -96,7 +100,7 @@ const selectPantryList = () => {
 const shoppingListItems = ref([]);
 
 // onMounted function not used in setup but required for lifecycle hooks
-onMounted(() => {});
+onMounted(() => { });
 
 onAuthStateChanged(auth, (user) => {
   userIsLoggedIn.value = !!user;
@@ -110,20 +114,23 @@ onAuthStateChanged(auth, (user) => {
 
 .clickSection {
   background-color: var(--white);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  font-weight: 900;
+
   &:focus {
     background-color: #3e86b6;
   }
-  
+
   &:hover {
     background: #3e86b69c;
     transition: background-color 0.3s;
-    
+
   }
-  
-  .corner{
+
+  .corner {
     background: var(--white);
   }
-  }
+}
 
 
 .tooltip {
@@ -132,7 +139,7 @@ onAuthStateChanged(auth, (user) => {
 
   .tooltiptext {
     visibility: hidden;
-    background-color: var(--tooltip) ;
+    background-color: var(--tooltip);
     color: var(--white);
     text-align: center;
     width: 120px;
@@ -144,42 +151,56 @@ onAuthStateChanged(auth, (user) => {
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s;
-   
+
   }
+
   &:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
     right: 10%;
     transition: opacity 0.3s;
-    
+
   }
 }
 
-.logIn{
- right: 50%;
- top: 20%;
+
+.logIn {
+  right: 50%;
+  top: 15%;
   transform: translate(50%, 50%);
+  #SignIn, #Register {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.063) 0px 15px 12px;
+    font-weight: 900;
+
+  }
 }
+
 .fadeIn {
   right: 50%;
   bottom: 50%;
   transform: translate(50%, 50%);
+  
 }
-.fade-enter-active, .fade-leave-active {
+
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.2s;
   transform: translateX(0px);
   transition: transform 0.4s;
 }
-.fade-enter-from, .fade-leave-to {
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
   transform: translatey(800px);
 }
-.fadeIn-enter-active, .fadeIn-leave-active {
-  transition: opacity 0.5s;
- 
+
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 0.4s;
 }
-.fadeIn-enter-from, .fadeIn-leave-to {
+
+.fadeIn-enter-from,
+.fadeIn-leave-to {
   opacity: 0;
- 
-}
-</style>
+}</style>

@@ -13,7 +13,6 @@ export interface User extends UserInfo {
   email: string;
   username: string | null ; // Add the username property
   shoppingLists: string[]; 
-
 }
 // Shopping item structure
 export interface ShoppingItem {

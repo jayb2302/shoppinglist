@@ -30,20 +30,21 @@ test('Add Item with Details and Move to Pantry', async t => {
 
     await t
         .typeText(itemNameInput, 'New Item')
-        .typeText(itemQuantityInput, '2')  // Enter the desired quantity
-        .typeText(itemUnitInput, 'pcs')    // Enter the desired unit
-        .typeText(itemStoreInput, 'Grocery Store')  // Enter the desired store
+        .typeText(itemQuantityInput, '2')  
+        .typeText(itemUnitInput, 'pcs')    
+        .typeText(itemStoreInput, 'Grocery Store') 
         .click(addItemButton);
 
     // Check the item that triggers the "move to pantry" action
     const itemToMove = Selector('.move-to-pantry');
 
     // Check if the item is not in the pantry
-    const pantryItem = itemToMove.parent().parent();  // Adjust the parent chain based on your DOM structure.
+    const pantryItem = itemToMove.parent().parent();  
 
     // Click the item to move it to the pantry
     await t
         .click(itemToMove)
-        .expect(pantryItem.exists).ok();  // Verify that the item is moved to the pantry
+        .expect(pantryItem.exists).ok(); 
+    // Verify that the item is in the pantry
 
 });

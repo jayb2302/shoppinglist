@@ -82,7 +82,6 @@ const categoryFilter = ref('');
 const activeFilter = ref('');
 const emit = defineEmits(['moveToShoppingList']);
 
-
 const fetchPantryItems = async () => {
   try {
     const pantryCollection = collection(db, 'pantry');

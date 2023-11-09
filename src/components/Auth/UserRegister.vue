@@ -1,10 +1,10 @@
 <template>
-    <div class="flex  pb-5 justify-center">
-      <div class="container-login flex flex-col item-background mt-6 pt-5 top-20  p-5">
+    <div class="background-gradient flex  justify-center content-center px-2 ">
+      <div class="container-login flex flex-col item-background my-3 top-20  p-3">
              <div class="card-login background-gradient p-4 gap-6 flex flex-col items-center">
-                <h2 class="pt-5">Sign Up Now!</h2>
-                <form @submit.prevent="registerUser">
-                  <div class="flex flex-col gap-5">
+                <h2 class="signup pt-5">Sign Up </h2>
+                <form @submit.prevent="registerUser" @keyup.enter="registerUser">
+                  <div class="flex flex-col px-4 gap-5">
                   <input
                     class="px-3 py-2  rounded-lg flex  "
                     v-model="email"
@@ -22,6 +22,7 @@
                   v-model="displayName"
                   type="text"
                   placeholder="Display Name"
+                  @keyup.enter="registerUser" 
                   />
                   <div class="flex justify-center">
                   <button class="button enter px-4" type="submit">Sign Up</button>
@@ -46,8 +47,6 @@ const email = ref('');
 const password = ref('');
 const displayName = ref('');
 const  emit = defineEmits(); // Define 'emit' using defineEmits
-
-
 
 const registerUser = async () => {
     try {

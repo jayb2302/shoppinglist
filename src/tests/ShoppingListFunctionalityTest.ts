@@ -34,7 +34,14 @@ test('Add Item with Details and Move to Pantry', async t => {
         .typeText(itemUnitInput, 'pcs')    
         .typeText(itemStoreInput, 'Grocery Store') 
         .click(addItemButton);
+    
+    await t.wait(1000);
 
+    const checkboxWrappers = Selector('.checkbox-wrapper');
+    const lastCheckboxWrapper = checkboxWrappers.nth(-1);
+    
+    await t.click(lastCheckboxWrapper);
+    
     // Check the item that triggers the "move to pantry" action
     const itemToMove = Selector('.move-to-pantry');
 
